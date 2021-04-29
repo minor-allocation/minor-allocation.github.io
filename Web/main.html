@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">         
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      #mainheading{
+        padding-left: 15px;
+      }
+      #logo{
+        padding: 20px;
+      }
+      #logo2{
+        padding: 20px;
+      }
+    </style>
+    
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper purple darken-2">
+          <a href="#" class="brand-logo center" id="mainheading" style="font-size:24px">Minor Allocation</a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fa fa-bars" style="color:white; font-size:24px"></i></a>
+          <ul class="right hide-on-med-and-down">
+            <li><a class="modal-trigger tooltipped" data-position="bottom" data-tooltip="Log out" id="lo" onclick="logout()">Log Out</a></li>
+            <li><a class="modal-trigger" href="#modal2" id="li">Login</a></li>
+            <li><a class="modal-trigger" href="#modal1" id="su">SignUp</a></li>
+            <li><a href="https://sites.google.com/view/ngsolutions/home">About Developer</a></li>
+          </ul>
+          <ul class="left hide-on-med-and-down">
+            <li><img class="materialboxed" width="150" src="./logo.png" id="logo"></li>
+          </ul>
+        </div>
+    </nav>
+      <ul class="sidenav" id="mobile-demo">
+        <li><img class="materialboxed" width="200" src="./logo2.png" id="logo2"></li>
+        <li><a class="modal-trigger tooltipped" data-position="bottom" data-tooltip="Log out" id="lo1" onclick="logout(event)">Log Out</a></li>
+        <li><a class="modal-trigger" href="#modal2" id="li1">Login</a></li>
+        <li><a class="modal-trigger" href="#modal1" id="su1">SignUp</a></li>
+        <li><a href="https://sites.google.com/view/ngsolutions/home">About Developer</a></li>
+      </ul>
+
+      <div class="row">
+        <form class="col s12" id="selectform" onsubmit="fillform(event)">
+          <div class="input-field col s6">
+            <select id="p1">
+              <option value="" disabled selected>Choose Subject</option>
+              <option value="1">ML</option>
+              <option value="2">Java</option>
+              <option value="3">Cyber Security</option>
+              <option value="4">Data Science</option>
+            </select>
+            <label>1st Preference</label>
+          </div>
+          <div class="input-field col s6">
+            <select id="p2">
+              <option value="" disabled selected>Choose Subject</option>
+              <option value="1">ML</option>
+              <option value="2">Java</option>
+              <option value="3">Cyber Security</option>
+              <option value="4">Data Science</option>
+            </select>
+            <label>2nd Preference</label>
+          </div>
+          <div class="input-field col s6">
+            <select id="p3">
+              <option value="" disabled selected>Choose Subject</option>
+              <option value="1">ML</option>
+              <option value="2">Java</option>
+              <option value="3">Cyber Security</option>
+              <option value="4">Data Science</option>
+            </select>
+            <label>3rd Preference</label>
+          </div>
+          <div class="input-field col s6">
+            <select id="p4">
+              <option value="" disabled selected>Choose Subject</option>
+              <option value="1">ML</option>
+              <option value="2">Java</option>
+              <option value="3">Cyber Security</option>
+              <option value="4">Data Science</option>
+            </select>
+            <label>4th Preference</label>
+          </div>
+          <style>
+            .wrapper {
+              text-align: center;
+            }
+
+            .button {
+              position: absolute;
+              top: 50%;
+            }
+            </style>
+          <div class="wrapper">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+              <i class="fa fa-paper-plane"></i>
+            </button>
+        </div>
+        </form>
+      </div>
+      <h3 class="purple-text text-darken-2 center-align" id="resClosed"></h3>
+      <table class="striped centered" id="Coursetable">
+        <thead>
+          <tr>
+              <th>Course Id</th>
+              <th>Course Name</th>
+              <th>Filled</th>
+              <th>Total Capacity</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="center-align" id="allocate"> 
+      <a class="waves-effect waves-light btn tooltipped" data-position="top" id="resBtn"  onclick="registration()"></a>
+      <a class="waves-effect waves-light btn"  onclick="getSortedData()">Allocate</a>
+      <a class="waves-effect waves-light btn"  onclick="reset()">Reset</a>
+      <a class="modal-trigger waves-effect waves-light btn"  href="#modal3">Edit Capacity</a>
+      </p>
+      <table class="striped centered" id="table">
+        <thead>
+          <tr>
+              <th>PRN</th>
+              <th>Name</th>
+              <th>CGPA</th>
+              <th>Preference</th>
+              <th>Allocation</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+    <p class="center-align">
+    <a class="waves-effect waves-light btn tooltipped" data-position="top" id="publish" onclick="publish()">Publish Results</a>
+    <a class="waves-effect waves-light btn" id="excel1" onclick="htmltoexcel()">download Excel</a>
+  </p>
+
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>SignUp</h4>
+        <form onsubmit="signup(event)">
+            <input type="number" id="signUpPRN" placeholder="PRN (eg. 0120190587)"/>
+            <input type="password" id="signUpPassword" placeholder="password"/>
+            <button type="submit" class="waves-effect waves-light btn modal-trigger #ab47bc purple lighten-1" id="subtn">SignUp</button>
+            <div class="preloader-wrapper big active" id="preloadsu">
+              <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+        </form>
+    </div>
+  </div>
+  <!-- Login Structure -->
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+        <h4>Login</h4>
+        <form onsubmit="login(event)">
+          <input type="number" id="loginPRN" placeholder="PRN (eg. 0120190587)"/>
+          <input type="password" id="LoginPassword" placeholder="password"/>
+          <button type="submit" class="waves-effect waves-light btn modal-trigger #ab47bc purple lighten-1" id="libtn">Login</button>
+
+          <div class="preloader-wrapper big active" id="preloadli">
+            <div class="spinner-layer spinner-blue-only">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        </form>
+    </div>
+  </div>
+
+  <!-- Edit Capacity Structure -->
+  <div id="modal3" class="modal">
+    <div class="modal-content">
+      <h4>Edit Capacity</h4>
+      <form onsubmit="editCap(event)">
+      <input type="number" id="cc1" name="c1"/>
+      <input type="number" id="cc2"  name="c2"/>
+      <input type="number" id="cc3"  name="c3"/>
+      <input type="number" id="cc4"  name="c4"/>
+      <button type="submit"   class="waves-effect waves-light btn modal-trigger #ab47bc purple lighten-1" id="edbtn">Edit Capacity</button>
+    </form>
+    </div>
+  </div>
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+      document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
+  });
+</script>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBwAYjHCU3WIavnP7vIAqVNalIT2qfffLE",
+    authDomain: "minor-allocation.firebaseapp.com",
+    projectId: "minor-allocation",
+    storageBucket: "minor-allocation.appspot.com",
+    messagingSenderId: "950731599246",
+    appId: "1:950731599246:web:83b2cd1c6c5176812808df"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+<script src="./auth.js"></script>
+<script src="./firestoreDB.js"></script>
+<script src="./table2excel.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems,{draggable:true});
+  });
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('select');
+  var instances = M.FormSelect.init(elems);
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.tooltipped');
+    var instances = M.Tooltip.init(elems);
+  });  
+</script>
+</body>
+</html>
