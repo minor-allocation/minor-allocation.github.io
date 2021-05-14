@@ -13,6 +13,7 @@ var resBtn = document.getElementById("resBtn");
 var resCloseText = document.getElementById("resClosed");
 var pubbtn = document.getElementById("publish");
 var useremail;
+var noUser = document.getElementById("noUser");
 excelbtn.style.visibility = "hidden";
 pubbtn.style.visibility = "hidden";
 resCloseText.style.visibility = "hidden";
@@ -414,6 +415,7 @@ function logout(){
 }
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
+        noUser.style.display="none";
         useremail = user.email;
         useremail =useremail.slice(0,10);
         if(user.displayName=="Admin")
@@ -437,6 +439,7 @@ firebase.auth().onAuthStateChanged((user) => {
         document.getElementById("lo1").innerHTML = user.email.slice(0, 10);
       console.log(user)
     } else {
+        noUser.style.display="block";
         selectform.style.display = "none";
         resCloseText.style.visibility = "hidden";
         excelbtn.style.visibility = "hidden";
