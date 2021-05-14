@@ -17,6 +17,7 @@ var pubbtn = document.getElementById("publish");
 var pubpara = document.getElementById("publishpara");
 var useremail;
 var noUser = document.getElementById("noUser");
+noUser.style.display="none";
 pubpara.style.display = "none";
 resultwithimg.style.display = "none";
 resCloseText.style.display = "none";
