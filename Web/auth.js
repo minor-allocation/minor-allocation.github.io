@@ -373,8 +373,8 @@ async function reset(e)
 {
     if(e!=null)
     {
-    e.preventDefault()
-    M.Modal.getInstance(myModal[3]).close()
+        e.preventDefault()
+        M.Modal.getInstance(myModal[3]).close()
     } 
     if(isAllowed==2)
     {
