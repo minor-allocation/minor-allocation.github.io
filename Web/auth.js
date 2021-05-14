@@ -48,7 +48,7 @@ async function signup(e){
           };
        }
     const result = await firebase.auth().createUserWithEmailAndPassword(email.value+"@prn.com", password.value)
-    /*if(email.value=="7768989938")
+    /*if(email.value=="1234567890")
     {
         await result.user.updateProfile({
         displayName: "Admin"

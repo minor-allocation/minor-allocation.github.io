@@ -21,16 +21,16 @@
     padding-left: 30px;
     padding-right: 30px;
     font-size: 18px;
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; /* Standard syntax */
+    -webkit-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
   }
 
   h3 {
     font-weight: 800;
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; /* Standard syntax */
+    -webkit-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
   }
 
   h4 {
@@ -51,7 +51,7 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 22%;
+    width: 290px;
     -webkit-user-select: none; 
     -ms-user-select: none; 
     user-select: none; 
