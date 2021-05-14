@@ -7,8 +7,7 @@
 body {
     top: 50%;
     left: 50%;
-
-
+    background-image: url(/Web/assets/wallpaper.png);
 }
 
 .row:after {
@@ -38,6 +37,12 @@ body {
     text-align: center;
     overflow: hidden;
     font-family: 'Abel', sans-serif;
+    background: rgba( 255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 7.0px );
+    -webkit-backdrop-filter: blur( 7.0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 
 
 }
@@ -45,7 +50,7 @@ body {
 .image1 {
     height: 200px;
     width: 200px;
-    background-image: url(/assets/Niranjan.jpg);
+    background-image: url(/Web/assets/Niranjan.jpg);
     background-size: cover;
     border-radius: 50%;
     border: 8px solid white;
@@ -59,7 +64,7 @@ body {
 .image2 {
     height: 200px;
     width: 200px;
-    background-image: url(/assets/pratik.jpeg);
+    background-image: url(/Web/assets/pratik.jpeg);
     background-size: cover;
     border-radius: 50%;
     border: 8px solid white;
@@ -73,7 +78,7 @@ body {
 .image3 {
     height: 200px;
     width: 200px;
-    background-image: url(/assets/atharva.jpg);
+    background-image: url(/Web/assets/atharva.jpg);
     background-size: cover;
     background-position: 50% 30%;
     border-radius: 50%;
@@ -88,7 +93,7 @@ body {
 .image4 {
     height: 200px;
     width: 200px;
-    background-image: url(/assets/aditya.jpg);
+    background-image: url(/Web/assets/aditya.jpg);
     background-size: cover;
     background-position: 40% 30%;
     border-radius: 50%;
@@ -112,25 +117,30 @@ body {
 }
 
 h1 {
+    color: #7B1FA2;
+    font-size: 45px;
     text-align: center;
     padding-top: 50px;
     font-weight: 700;
     font-family: 'Montserrat', sans-serif;
+    text-shadow: 2px 3px 9px rgba(132,132,132,0.5);
 }
 
 h3 {
     margin-bottom: 10px;
+    font-size: 25px;
     font-family: 'Montserrat', sans-serif;
 }
 
 .title {
-    color: rgb(105, 100, 109);
+    font-size: 20px;
+    color: rgb(71, 66, 66);
 }
 
 p {
     padding-left: 30px;
     padding-right: 30px;
-    color: rgb(105, 100, 109);
+    color: rgb(71, 66, 66);
 }
 
 .icons {
