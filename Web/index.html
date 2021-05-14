@@ -243,8 +243,8 @@
     <div class="modal-content">
       <h4>Are you Sure?</h4>
       <h6>You cannot revert this operation!!!</h6>
-      <form onsubmit="resetfnclose()">
-        <a onclick="reset()"><button type="submit" class="waves-effect waves-light btn modal-trigger purple lighten-1">Yes</button></a>
+      <form onsubmit="resetfnclose(event)">
+        <a class="waves-effect waves-light btn modal-trigger purple lighten-1" onclick="reset(event)">Reset</a>
         <button type="submit" class="waves-effect waves-light btn modal-trigger purple lighten-1">No</button>
       </form>
     </div>

@@ -369,8 +369,10 @@ async function getTable()
         });
     });
 }
-async function reset()
+async function reset(e)
 {
+    e.preventDefault()
+    M.Modal.getInstance(myModal[3]).close() 
     if(isAllowed==2)
     {
         M.toast({html: 'Unpublish the result to reset', classes: 'red rounded', displayLength: 1500})
@@ -514,8 +516,9 @@ async function editCap(e){
     M.Modal.getInstance(myModal[2]).close()
     reset();
 }
-function resetfnclose()
+function resetfnclose(e)
 {
+    e.preventDefault()
     M.Modal.getInstance(myModal[3]).close() 
 }
 async function fillform(e){
