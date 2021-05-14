@@ -12,13 +12,13 @@ var table2 = document.getElementById("Coursetable");
 var resBtn = document.getElementById("resBtn");
 var resCloseText = document.getElementById("resClosed");
 var pubbtn = document.getElementById("publish");
+var pubpara = document.getElementById("publishpara");
 var useremail;
 var noUser = document.getElementById("noUser");
-excelbtn.style.visibility = "hidden";
-pubbtn.style.visibility = "hidden";
-resCloseText.style.visibility = "hidden";
-table1.style.visibility = "hidden";
-table2.style.visibility = "hidden";
+pubpara.style.display = "none";
+resCloseText.style.display = "none";
+table1.style.visibility = "collapse";
+table2.style.visibility = "collapse"
 allocatebtn.style.display = "none";
 selectform.style.display = "none";
 lo.style.display = "none";
@@ -441,9 +441,8 @@ firebase.auth().onAuthStateChanged((user) => {
     } else {
         noUser.style.display="block";
         selectform.style.display = "none";
-        resCloseText.style.visibility = "hidden";
-        excelbtn.style.visibility = "hidden";
-        pubbtn.style.visibility = "hidden";
+        resCloseText.style.display = "none";
+        pubpara.style.display = "none";
         
         isLoggedin = false
         hideLO()
@@ -575,18 +574,15 @@ function showbtntoadmin()
     allocatebtn.style.display = "block";
     table1.style.visibility = "visible";
     table2.style.visibility = "visible";
-    excelbtn.style.visibility = "visible";
-    pubbtn.style.visibility = "visible";
+    pubpara.style.display = "block";
     
 }
 function hidebtnforstud()
 {
     allocatebtn.style.display = "none";
-    table1.style.visibility = "hidden";
-    table2.style.visibility = "hidden";
-    excelbtn.style.visibility = "hidden";
-    pubbtn.style.visibility = "hidden";
-    
+    table1.style.visibility = "collapse";
+    table2.style.visibility = "collapse";
+    pubpara.style.display = "none";
 }
 
   
@@ -690,14 +686,14 @@ async function isAllowedfnforstud()
         {
             isAllowed=0;
             selectform.style.display = "none";
-            resCloseText.style.visibility = "visible";
+            resCloseText.style.display = "block";
             resCloseText.innerHTML="Registration is closed, the result will be published soon";
         }
         else if(doc.data()["Allow"]==1)
         {
             isAllowed=1;
             selectform.style.display = "block";
-            resCloseText.style.visibility = "hidden";
+            resCloseText.style.display = "none";
         }
         else if(doc.data()["Allow"]==2)
         {
@@ -706,7 +702,7 @@ async function isAllowedfnforstud()
             .then((doc) => {
                     isAllowed=2;
                     selectform.style.display = "none";
-                    resCloseText.style.visibility = "visible";
+                    resCloseText.style.display = "block";
                     firebase.firestore().collection("Courses").doc(doc.data()["allocation"].toString()).get().then((doc) => {
                         if (doc.exists) {
                             resCloseText.innerHTML="Your allocated subject is " + doc.data()["Course Name"];

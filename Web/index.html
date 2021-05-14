@@ -44,6 +44,7 @@
     }
 
     h4 {
+      font-size: 30px;
       font-weight: 600;
     }
 
@@ -51,7 +52,7 @@
       display: block;
       margin-left: auto;
       margin-right: auto;
-      width: 25%;
+      width: 22%;
     }
 
     .row {
@@ -122,8 +123,8 @@
       considers the late submissions(after the approval of the admin) and allocates the remaining vacant seats without
       replacing others the ones filled earlier</p>
   </div>
-  <div class="row">
-    <form class="col s12" id="selectform" onsubmit="fillform(event)">
+  <div class="row" id="selectform">
+    <form class="col s12" onsubmit="fillform(event)">
       <div class="input-field col s6">
         <select id="p1">
           <option value="" disabled selected>Choose Subject</option>
@@ -219,7 +220,7 @@
     </tbody>
   </table>
 
-  <p class="center-align">
+  <p class="center-align" id="publishpara">
     <a class="waves-effect waves-light btn tooltipped" data-position="top" id="publish" onclick="publish()">Publish
       Results</a>
     <a class="waves-effect waves-light btn" id="excel1" onclick="htmltoexcel()">download Excel</a>
