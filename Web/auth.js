@@ -11,11 +11,14 @@ var table1 = document.getElementById("table");
 var table2 = document.getElementById("Coursetable");
 var resBtn = document.getElementById("resBtn");
 var resCloseText = document.getElementById("resClosed");
+var resultwithimg = document.getElementById("wait");
+var waitimg = document.getElementById("wait");
 var pubbtn = document.getElementById("publish");
 var pubpara = document.getElementById("publishpara");
 var useremail;
 var noUser = document.getElementById("noUser");
 pubpara.style.display = "none";
+resultwithimg.style.display = "none";
 resCloseText.style.display = "none";
 table1.style.visibility = "collapse";
 table2.style.visibility = "collapse"
@@ -372,6 +375,7 @@ async function reset()
         M.toast({html: 'Unpublish the result to reset', classes: 'red rounded', displayLength: 1500})
         return;
     }
+    M.toast({html: 'Reset Successfully', classes: 'green rounded', displayLength: 1500})
     deletestudRows();
     const db = firebase.firestore()
     await db.collection("user").get().then((querySnapshot) => {
@@ -441,6 +445,7 @@ firebase.auth().onAuthStateChanged((user) => {
     } else {
         noUser.style.display="block";
         selectform.style.display = "none";
+        resultwithimg.style.display = "none";
         resCloseText.style.display = "none";
         pubpara.style.display = "none";
         
@@ -507,6 +512,10 @@ async function editCap(e){
     }
     M.Modal.getInstance(myModal[2]).close()
     reset();
+}
+function resetfnclose()
+{
+    M.Modal.getInstance(myModal[3]).close() 
 }
 async function fillform(e){
     e.preventDefault()
@@ -686,14 +695,17 @@ async function isAllowedfnforstud()
         {
             isAllowed=0;
             selectform.style.display = "none";
+            resultwithimg.style.display = "block";
             resCloseText.style.display = "block";
             resCloseText.innerHTML="Registration is closed, the result will be published soon";
+            waitimg.src="./assets/wait.png"
         }
         else if(doc.data()["Allow"]==1)
         {
             isAllowed=1;
-            selectform.style.display = "block";
+            resultwithimg.style.display = "none";
             resCloseText.style.display = "none";
+            selectform.style.display = "block";
         }
         else if(doc.data()["Allow"]==2)
         {
@@ -702,14 +714,17 @@ async function isAllowedfnforstud()
             .then((doc) => {
                     isAllowed=2;
                     selectform.style.display = "none";
+                    resultwithimg.style.display = "block";
                     resCloseText.style.display = "block";
                     firebase.firestore().collection("Courses").doc(doc.data()["allocation"].toString()).get().then((doc) => {
                         if (doc.exists) {
-                            resCloseText.innerHTML="Your allocated subject is " + doc.data()["Course Name"];
+                            resCloseText.innerHTML="Congrats! Your allocated subject is " + doc.data()["Course Name"];
+                            waitimg.src="./assets/congo.png"
                         }
                         else
                         {
-                            resCloseText.innerHTML="Sorry No subject Allocated";
+                            resCloseText.innerHTML="Sorry! No subject Allocated";
+                            waitimg.src="./assets/sorry.png"
                         }
                     }).catch((error) => {
                         console.log("Error getting document:", error);

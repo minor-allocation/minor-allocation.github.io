@@ -34,27 +34,54 @@
 
     p {
       font-family: 'Open Sans', sans-serif;
-      padding-left: 20px;
-      padding-right: 20px;
+      padding-left: 30px;
+      padding-right: 30px;
       font-size: 18px;
+      -webkit-user-select: none; /* Safari */
+      -ms-user-select: none; /* IE 10 and IE 11 */
+      user-select: none; /* Standard syntax */
     }
 
     h3 {
       font-weight: 800;
+      -webkit-user-select: none; /* Safari */
+      -ms-user-select: none; /* IE 10 and IE 11 */
+      user-select: none; /* Standard syntax */
     }
 
     h4 {
       font-size: 30px;
       font-weight: 600;
+      -webkit-user-select: none; /* Safari */
+      -ms-user-select: none; /* IE 10 and IE 11 */
+      user-select: none; /* Standard syntax */
     }
-
+    #resClosed
+    {
+      padding-top: 50px;
+      -webkit-user-select: none; 
+      -ms-user-select: none; 
+      user-select: none; 
+    }
     #img1 {
       display: block;
       margin-left: auto;
       margin-right: auto;
       width: 22%;
+      -webkit-user-select: none; 
+      -ms-user-select: none; 
+      user-select: none; 
     }
-
+    #wait{
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      padding-top: 50px;
+      width: 250px;
+      -webkit-user-select: none; 
+      -ms-user-select: none; 
+      user-select: none; 
+    }
     .row {
       padding: 50px;
     }
@@ -68,6 +95,16 @@
     .button {
       position: absolute;
       top: 50%;
+    }
+    #table{
+      -webkit-user-select: none; 
+      -ms-user-select: none; 
+      user-select: none; 
+    }
+    #Coursetable{
+      -webkit-user-select: none; 
+      -ms-user-select: none; 
+      user-select: none; 
     }
   </style>
 
@@ -173,6 +210,7 @@
     </form>
   </div>
   <h3 class="purple-text text-darken-2 center-align" id="resClosed"></h3>
+  <img id="wait">
   <table class="striped centered" id="Coursetable">
     <thead>
       <tr>
@@ -195,7 +233,7 @@
   <p class="center-align" id="allocate">
     <a class="waves-effect waves-light btn tooltipped" data-position="top" id="resBtn" onclick="registration()"></a>
     <a class="waves-effect waves-light btn" onclick="getSortedData()">Allocate</a>
-    <a class="waves-effect waves-light btn" onclick="reset()">Reset</a>
+    <a class="modal-trigger waves-effect waves-light btn" href="#modal4">Reset</a>
     <a class="modal-trigger waves-effect waves-light btn" href="#modal3">Edit Capacity</a>
   </p>
   <table class="striped centered" id="table">
@@ -289,6 +327,18 @@
         <input type="number" id="cc4" name="c4" />
         <button type="submit" class="waves-effect waves-light btn modal-trigger #ab47bc purple lighten-1"
           id="edbtn">Edit Capacity</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Reset Confirmation Structure -->
+  <div id="modal4" class="modal">
+    <div class="modal-content">
+      <h4>Are you Sure?</h4>
+      <h6>You cannot revert this operation!!!</h6>
+      <form onsubmit="resetfnclose()">
+        <a onclick="reset()"><button type="submit" class="waves-effect waves-light btn modal-trigger purple lighten-1">Yes</button></a>
+        <button type="submit" class="waves-effect waves-light btn modal-trigger purple lighten-1">No</button>
       </form>
     </div>
   </div>
