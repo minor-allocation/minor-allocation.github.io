@@ -67,8 +67,8 @@ async function signup(e){
         if(err.code=="auth/email-already-in-use")
         {
             err.message="PRN already exist"
-            window.alert(err.message)       
         }
+        window.alert(err.message);  
         subtn.style.display = "block";
         preloadsu.style.display = "none";
     }
