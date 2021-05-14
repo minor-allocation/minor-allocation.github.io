@@ -7,7 +7,7 @@
 body {
     top: 50%;
     left: 50%;
-    background-image: url(/Web/assets/wallpaper.png);
+    background-image: url(/assets/wallpaper.png);
 }
 
 .row:after {
@@ -50,7 +50,7 @@ body {
 .image1 {
     height: 200px;
     width: 200px;
-    background-image: url(/Web/assets/Niranjan.jpg);
+    background-image: url(/assets/Niranjan.jpg);
     background-size: cover;
     border-radius: 50%;
     border: 8px solid white;
@@ -64,7 +64,7 @@ body {
 .image2 {
     height: 200px;
     width: 200px;
-    background-image: url(/Web/assets/pratik.jpeg);
+    background-image: url(/assets/pratik.jpeg);
     background-size: cover;
     border-radius: 50%;
     border: 8px solid white;
@@ -78,7 +78,7 @@ body {
 .image3 {
     height: 200px;
     width: 200px;
-    background-image: url(/Web/assets/atharva.jpg);
+    background-image: url(/assets/atharva.jpg);
     background-size: cover;
     background-position: 50% 30%;
     border-radius: 50%;
@@ -93,7 +93,7 @@ body {
 .image4 {
     height: 200px;
     width: 200px;
-    background-image: url(/Web/assets/aditya.jpg);
+    background-image: url(/assets/aditya.jpg);
     background-size: cover;
     background-position: 40% 30%;
     border-radius: 50%;
