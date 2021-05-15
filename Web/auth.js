@@ -17,11 +17,11 @@ var pubbtn = document.getElementById("publish");
 var pubpara = document.getElementById("publishpara");
 var useremail;
 var noUser = document.getElementById("noUser");
-var gprn=[];
-var gname=[];
-var gcgpa=[];
-var gpref=[];
-var gallocate=[];
+var gprn = [];
+var gname = [];
+var gcgpa = [];
+var gpref = [];
+var gallocate = [];
 noUser.style.display = "none";
 pubpara.style.display = "none";
 resultwithimg.style.display = "none";
@@ -314,7 +314,7 @@ async function allocate(sortedPRN, pref1, pref2, pref3, pref4, totalCapDict, fil
         }
 
         fillstudtable(j, sortedPRN[x], name[x], CGPA[x], pref1[x] + "," + pref2[x] + "," + pref3[x] + "," + pref4[x], allocate[x])
-        
+
     }
     for (i = 1; i < 5; i++) {
         fillcoursetable(i, i, coursename[i], filledDict[i], totalCapDict[i])
@@ -509,13 +509,29 @@ async function fillform(e) {
     var p2 = document.getElementById("p2").selectedIndex;
     var p3 = document.getElementById("p3").selectedIndex;
     var p4 = document.getElementById("p4").selectedIndex;
-
+    var wannabelate = false;
+    var preallocation;
+    var filledcheck = 0;
     try {
         if (p1 == p2 || p1 == p3 || p1 == p4 || p2 == p3 || p2 == p4 || p3 == p4 || !p1 || !p2 || !p3 || !p4) {
             window.alert("Invalid choices")
         }
         else {
-            firebase.firestore().collection("Student Database").doc(firebase.auth().currentUser.email.slice(0, 10)).get().then((doc) => {
+            await firebase.firestore().collection("user").doc(firebase.auth().currentUser.email.slice(0, 10)).get().then((doc) => {
+                if (doc.exists) {
+                    if (doc.data()["allocation"] != 0) {
+                        wannabelate = true;
+                        preallocation = doc.data()["allocation"];
+                    }
+                }
+                else {
+
+                }
+            }).catch((error) => {
+                console.log("Error getting document:", error);
+            });
+
+            await firebase.firestore().collection("Student Database").doc(firebase.auth().currentUser.email.slice(0, 10)).get().then((doc) => {
                 if (doc.exists) {
                     addresponse(firebase.auth().currentUser.email.slice(0, 10), p1, p2, p3, p4);
                     M.toast({ html: 'Response Added', classes: 'green rounded', displayLength: 1500 })
@@ -528,8 +544,25 @@ async function fillform(e) {
             }).catch((error) => {
                 console.log("Error getting document:", error);
             });
-
-
+            if (wannabelate) {
+                console.log("check this " + 1)
+                await firebase.firestore().collection("Courses").doc(preallocation.toString()).get().then((doc) => {
+                    if (doc.exists) {
+                        filledcheck = doc.data()["filled"]-1;
+                        console.log("check this " + 2)
+                    } else {
+                        // doc.data() will be undefined in this case
+                        console.log("No such document!");
+                    }
+                }).catch((error) => {
+                    console.log("Error getting document:", error);
+                });
+                console.log("check this " + 3)
+                await firebase.firestore().collection('Courses').doc(preallocation.toString())
+                    .update({
+                        filled: filledcheck
+                    })
+            }
         }
     }
     catch (err) {
@@ -575,11 +608,11 @@ function hidebtnforstud() {
 
 
 function fillstudtable(i, prn, name, cgpa, pref, allocation) {
-    gprn[i-1]=prn;
-    gcgpa[i-1]=cgpa;
-    gname[i-1]=name;
-    gpref[i-1]=pref;
-    gallocate[i-1]=allocation;
+    gprn[i - 1] = prn;
+    gcgpa[i - 1] = cgpa;
+    gname[i - 1] = name;
+    gpref[i - 1] = pref;
+    gallocate[i - 1] = allocation;
     var table = document.getElementById("table");
     var row = table.insertRow(i);
     var prnfield = row.insertCell(0);
@@ -780,82 +813,77 @@ function sortTable(op) {
             }
         }
     }
-    else if(op==2){
+    else if (op == 2) {
         var table, rows, i, x, y;
         table = document.getElementById("table");
         rows = table.rows;
-        y=0;
+        y = 0;
         for (i = 1; i < (rows.length); i++) {
-            x = rows[i].getElementsByTagName("TD")[4]; 
-            if(x.innerHTML.toLowerCase()!=1)
-            {
+            x = rows[i].getElementsByTagName("TD")[4];
+            if (x.innerHTML.toLowerCase() != 1) {
                 document.getElementById("table").deleteRow(i);
                 i--;
                 console.log(x.innerHTML.toLowerCase());
             }
         }
     }
-    else if(op==3){
+    else if (op == 3) {
         var table, rows, i, x, y;
         table = document.getElementById("table");
         rows = table.rows;
-        y=0;
+        y = 0;
         for (i = 1; i < (rows.length); i++) {
-            x = rows[i].getElementsByTagName("TD")[4]; 
-            if(x.innerHTML.toLowerCase()!=2)
-            {
+            x = rows[i].getElementsByTagName("TD")[4];
+            if (x.innerHTML.toLowerCase() != 2) {
                 document.getElementById("table").deleteRow(i);
                 i--;
                 console.log(x.innerHTML.toLowerCase());
             }
         }
     }
-    else if(op==4){
+    else if (op == 4) {
         var table, rows, i, x, y;
         table = document.getElementById("table");
         rows = table.rows;
-        y=0;
+        y = 0;
         for (i = 1; i < (rows.length); i++) {
-            x = rows[i].getElementsByTagName("TD")[4]; 
-            if(x.innerHTML.toLowerCase()!=3)
-            {
+            x = rows[i].getElementsByTagName("TD")[4];
+            if (x.innerHTML.toLowerCase() != 3) {
                 document.getElementById("table").deleteRow(i);
                 i--;
                 console.log(x.innerHTML.toLowerCase());
             }
         }
     }
-    else if(op==5){
+    else if (op == 5) {
         var table, rows, i, x, y;
         table = document.getElementById("table");
         rows = table.rows;
-        y=0;
+        y = 0;
         for (i = 1; i < (rows.length); i++) {
-            x = rows[i].getElementsByTagName("TD")[4]; 
-            if(x.innerHTML.toLowerCase()!=4)
-            {
+            x = rows[i].getElementsByTagName("TD")[4];
+            if (x.innerHTML.toLowerCase() != 4) {
                 document.getElementById("table").deleteRow(i);
                 i--;
                 console.log(x.innerHTML.toLowerCase());
             }
         }
     }
-    else if(op==6){
+    else if (op == 6) {
         var table, rows, i, x, y;
         table = document.getElementById("table");
         rows = table.rows;
-        y=0;
+        y = 0;
         for (i = 1; i < (rows.length); i++) {
-            x = rows[i].getElementsByTagName("TD")[4]; 
-            if(x.innerHTML.toLowerCase()!=0)
-            {
+            x = rows[i].getElementsByTagName("TD")[4];
+            if (x.innerHTML.toLowerCase() != 0) {
                 document.getElementById("table").deleteRow(i);
                 i--;
                 console.log(x.innerHTML.toLowerCase());
             }
         }
     }
-    else{
+    else {
         var table, rows, switching, i, x, y, shouldSwitch;
         table = document.getElementById("table");
         switching = true;
@@ -866,10 +894,10 @@ function sortTable(op) {
                 shouldSwitch = false;
                 x = rows[i].getElementsByTagName("TD")[4];
                 y = rows[i + 1].getElementsByTagName("TD")[4];
-                if(x.innerHTML.toLowerCase()==0)
-                    x.innerHTML.toLowerCase()=5;
-                if(y.innerHTML.toLowerCase()==0)
-                    y.innerHTML.toLowerCase()=5;
+                if (x.innerHTML.toLowerCase() == 0)
+                    x.innerHTML.toLowerCase() = 5;
+                if (y.innerHTML.toLowerCase() == 0)
+                    y.innerHTML.toLowerCase() = 5;
                 if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
                     shouldSwitch = true;
                     break;
@@ -882,9 +910,8 @@ function sortTable(op) {
         }
     }
 }
-function revivetable()
-{
-    var i,j;
+function revivetable() {
+    var i, j;
     var rows = document.getElementById("table").rows.length;
     for (i = 2; i < rows; i++)
         document.getElementById("table").deleteRow(1);
@@ -893,8 +920,7 @@ function revivetable()
     console.log(gcgpa);
     console.log(gpref);
     console.log(gallocate);
-    for(j=1;j<=gprn.length;j++)
-    {
+    for (j = 1; j <= gprn.length; j++) {
         var table = document.getElementById("table");
         var row = table.insertRow(j);
         var prnfield = row.insertCell(0);
@@ -902,10 +928,10 @@ function revivetable()
         var cgpafield = row.insertCell(2);
         var preffield = row.insertCell(3);
         var allocationfield = row.insertCell(4);
-        prnfield.innerHTML = gprn[j-1];
-        namefield.innerHTML = gname[j-1];
-        cgpafield.innerHTML = gcgpa[j-1];
-        preffield.innerHTML = gpref[j-1];
-        allocationfield.innerHTML = gallocate[j-1];
+        prnfield.innerHTML = gprn[j - 1];
+        namefield.innerHTML = gname[j - 1];
+        cgpafield.innerHTML = gcgpa[j - 1];
+        preffield.innerHTML = gpref[j - 1];
+        allocationfield.innerHTML = gallocate[j - 1];
     }
 }
