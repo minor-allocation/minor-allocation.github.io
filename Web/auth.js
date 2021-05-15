@@ -217,6 +217,17 @@ async function loadCapacity(sortedPRN,pref1,pref2,pref3,pref4,CGPA,name,allocati
     })
     allocate(sortedPRN,pref1,pref2,pref3,pref4,totalCapDict,filledDict,CGPA,name,coursename,allocation)
 }
+function addresponse(prn,p1,p2,p3,p4)
+{
+    firebase.firestore().collection('user').doc(prn)
+            .set({
+                pref1: p1,
+                pref2: p2,
+                pref3: p3,
+                pref4: p4,
+                allocation: 0
+            })
+}
 async function allocate(sortedPRN,pref1,pref2,pref3,pref4,totalCapDict,filledDict,CGPA,name,coursename,allocation)
 {
     if(isAllowed==2)
@@ -224,6 +235,7 @@ async function allocate(sortedPRN,pref1,pref2,pref3,pref4,totalCapDict,filledDic
         M.toast({html: 'Unpublish the result to allocate', classes: 'red rounded', displayLength: 1500})
         return;
     }
+    
     var x
     var allocate=allocation;
     deletestudRows();
