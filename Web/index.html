@@ -170,8 +170,27 @@
     <a class="waves-effect waves-light btn tooltipped" data-position="top" id="publish" onclick="publish()">Publish
       Results</a>
     <a class="waves-effect waves-light btn" id="excel1" onclick="htmltoexcel()">download Excel</a>
+    <a class='waves-effect dropdown-trigger btn' href='#' data-target='dropdown1'>Sort By
+      <i class="fa fa-sort"></i>
+    </a>
+    
   </p>
-
+  <!-- Dropdown Structure -->
+  <ul id='dropdown1' class='dropdown-content'>
+    <li><a onclick="sortTable(1)">CGPA</a></li>
+    <li><a onclick="sortTable(7)">By Allocation</a></li>
+    <li><a onclick="sortTable(2)">ML</a></li>
+    <li><a onclick="sortTable(3)">Java</a></li>
+    <li><a onclick="sortTable(4)">Cyber Security</a></li>
+    <li><a onclick="sortTable(5)">Data Science</a></li>
+    <li><a onclick="sortTable(6)">No Allocations</a></li>
+  </ul>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    var instances = M.Dropdown.init(elems);
+  });
+  </script>
   <!-- SignUP Structure -->
   <div id="modal1" class="modal">
     <div class="modal-content">
